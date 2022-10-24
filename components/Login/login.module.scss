@@ -1,0 +1,73 @@
+@import '../../styles/variables.module';
+
+.loginWrapper {
+  margin-top: 150px;
+
+  .rememberPassword {
+    margin-left: 7.5px;
+  }
+
+  .checkBox {
+    margin-top: 1px;
+  }
+
+  .loginCustom {
+    background: $ag-color;
+    border: 1px solid rgb(225, 225, 227);
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: stretch;
+    align-items: stretch;
+    width: 300px;
+    margin: 0px auto;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+    .title {
+      text-align: center;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: rgb(78, 187, 42);
+    }
+
+    .errorMessage {
+      margin-top: -20px;
+      font-size: 14px;
+      margin-left: 45px;
+      color: $red;
+    }
+
+    .logo {
+      display: block;
+      margin: 5px auto;
+      width: 64%;
+      height: 38px;
+      //background: url("../../assets/img/logo.png") no-repeat 0 0;
+    }
+
+    .formGroup {
+      display: flex;
+      align-items: flex-end;
+      margin: 25px 14px;
+
+      .icon {
+        color: rgba(0, 0, 0, 0.54);
+        margin: 4px 8px 4px 0;
+      }
+
+      .loginButton {
+        color: $ag-color;
+        margin-top: 10px;
+        width: 100%;
+        font-weight: bold;
+        background-color: $eg-color;
+        border-radius: 10px;
+
+        &:hover {
+          background-color: $fg-color;
+        }
+      }
+    }
+  }
+}
