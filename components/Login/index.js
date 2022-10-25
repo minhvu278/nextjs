@@ -1,10 +1,49 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Head from "next/head";
+import { useDispatch } from 'react-redux';
 import styles from './login.module.scss';
 import {MailOutline, Lock, CheckBox} from '@mui/icons-material';
 import {Box, Button, Checkbox, FormControlLabel, TextField, Typography} from "@mui/material";
+import {useRouter} from "next/router";
+import Cookies from 'js-cookie';
+import {login} from "../../redux/actions/auth";
+import statusCode from "../../constants/statusCode";
 
 export default function Login() {
+
+    const router = useRouter()
+    const dispatch = useDispatch()
+    const [error, setError] = useState([])
+    const [values, setValues] = useState({email: '', password: '', remember: false})
+
+    const handleChangeValue = (e) => setValues(values => (
+        { ...values, [e.target.name]: e.target.name === 'remember' ? document.getElementById('remember').checked : e.target.value }
+    ));
+
+    const handleLoginSubmit = (e) => {
+        e.preventDefault()
+        dispatch(login(values)).then((res) => {
+            if (res?.status === statusCode.OK) {
+                const token = res?.data?.access_token;
+                const locale = res?.data?.user?.language;
+                Cookies.set('token', token, {expires: values?.remember ? 365 : (1 / 24)}, {secure: true})
+                Cookies.set('locale', locale, {expires: values?.remember ? 365 : (1 / 24)}, {secure: true})
+                if (Cookies.get('previous-path')) {
+                    router.push(Cookies.get('previous-path'))
+                    Cookies.remove('previous-path')
+                } else {
+                    let pathName = '/'
+                    router.push({
+                        pathname: pathName,
+                        query: {message: res?.data?.message, statusCode: res?.status}
+                    }, pathName)
+                }
+            } else {
+                setError(res?.data)
+            }
+        })
+    }
+
     return (
         <div className={styles.loginWrapper}>
             <Head>
@@ -13,7 +52,7 @@ export default function Login() {
             </Head>
 
             <Box className={styles.loginCustom}>
-                <form>
+                <form onSubmit={handleLoginSubmit}>
                     <Typography variant='h5' className={styles.title}>
                         Login
                     </Typography>
@@ -25,6 +64,7 @@ export default function Login() {
                             name='email'
                             placeholder="Email"
                             variant='standard'
+                            onChange={handleChangeValue}
                         />
                     </Box>
                     {/*{*/}
@@ -39,6 +79,7 @@ export default function Login() {
                             // placeholder={trans.login.password}
                             variant='standard'
                             type='password'
+                            onChange={handleChangeValue}
                         />
                     </Box>
                     {/*{*/}
@@ -47,7 +88,7 @@ export default function Login() {
                     {/*<Box>*/}
                     {/*    {errors?.message && !errors?.email && !errors?.password && <Alert severity='error'>{errors?.message}</Alert>}*/}
                     {/*</Box>*/}
-                    <FormControlLabel className={styles.rememberPassword} control={<Checkbox id='remember' name='remember' className={styles.checkBox} />} label="Remember" />
+                    <FormControlLabel className={styles.rememberPassword} control={<Checkbox id='remember' name='remember' className={styles.checkBox} onClick={handleChangeValue} />} label="Remember" />
                     <Box className={styles.formGroup}>
                         <Button variant='contained' type='submit' className={styles.loginButton}>
                             Login
