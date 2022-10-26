@@ -1,4 +1,4 @@
-import {LOGIN_SUCCESS, SET_LOADING} from "../constants";
+import {LOGIN_SUCCESS, LOGOUT_SUCCESS, SET_LOADING} from "../constants";
 
 const initialState = {
     loading: false,
@@ -22,6 +22,13 @@ export function authReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 dataLogin: action.payload,
+                errors: null
+            }
+        case LOGOUT_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                dataLogout: action.payload,
                 errors: null
             }
         default:

@@ -1,0 +1,36 @@
+@import '../../styles/variables.module';
+
+.root {
+  .iconMenu {
+    display: block;
+  }
+
+  .header {
+    width: 100%;
+  }
+
+  .header {
+    background-color: $ag-color;
+    box-shadow: none;
+
+    .navbar {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      width: 100%;
+    }
+  }
+
+  .headerSpaceBetween {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+@media only screen and (max-width: $md) {
+  .root {
+    .iconMenu {
+      display: block;
+    }
+  }
+}
