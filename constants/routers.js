@@ -1,6 +1,5 @@
-import DefaultLayout from "../../components/Layout/DefaultLayout";
-import Layout from "../../components/Layout";
-
+import Layout from '@/components/Layout';
+import DefaultLayout from '../components/Layout/DefaultLayout';
 const routers = [
     {
         pathname: '/login',
@@ -11,7 +10,12 @@ const routers = [
         pathname: '/',
         titleHead: 'Homepage',
         layout: Layout,
-    }
+    },
+    {
+        pathname: '/skillsheet',
+        titleHead: 'Xem skillsheet',
+        layout: DefaultLayout,
+    },
 
 ]
 export {Layout, DefaultLayout}

@@ -1,11 +1,11 @@
 import '../styles/globals.css'
 import '/styles/app.scss'
 import {Provider} from "react-redux";
-import {useStore} from "../redux/store";
 import RouteGuard from "../components/RouteGuard";
 import {useRouter} from "next/router";
-import routers, {DefaultLayout} from "../redux/constants/routers";
 import Head from "next/head";
+import {useStore} from "@/redux/store";
+import routers, {DefaultLayout} from "@/constants/routers";
 
 function MyApp({ Component, pageProps }) {
   const store = useStore(pageProps.initialReduxState)

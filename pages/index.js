@@ -3,7 +3,7 @@ import Link from "next/link";
 import {useRouter} from "next/router";
 import {useEffect} from "react";
 import statusCode from "../constants/statusCode";
-import {successToast} from "../helper/toast";
+import {successToast} from "@/helper/toast";
 
 export default function Home() {
     const router = useRouter()
