@@ -6,8 +6,8 @@ import {MailOutline, Lock, CheckBox} from '@mui/icons-material';
 import {Box, Button, Checkbox, FormControlLabel, TextField, Typography} from "@mui/material";
 import {useRouter} from "next/router";
 import Cookies from 'js-cookie';
-import {login} from "../../redux/actions/auth";
 import statusCode from "../../constants/statusCode";
+import {login} from "@/redux/actions/auth";
 
 export default function Login() {
 

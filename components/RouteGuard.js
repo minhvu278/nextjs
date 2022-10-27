@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useRouter} from "next/router";
-import {PUBLISH_PATHS} from "../constants/constant";
 import Cookies from 'js-cookie';
+import {PUBLISH_PATHS} from "@/constants/constant";
 
 export default function RouteGuard({children}) {
     const router = useRouter();

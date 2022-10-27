@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/lib/*": ["lib/*"],
+      "@/helper/*": ["helper/*"],
+      "@/config/*": ["config/*"],
+      "@/constants/*": ["constants/*"],
+      "@/styles/*": ["styles/*"],
+      "@/redux/*": ["redux/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/configs/*": ["configs/*"],
+    }
+  }
+}
